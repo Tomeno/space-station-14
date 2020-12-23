@@ -32,8 +32,13 @@ jobs:
       run: python3 ./Tools/package_server_build.py -p linux-arm64
     - name: Package client for ARM64
       run: python3 ./Tools/package_client_build.py
-    - name: Upload a Build Artifact
+    - name: Upload server artifact
       uses: actions/upload-artifact@v2.2.1
       with:
-        name: ss14-builds
-        path: ./release/*
+        name: SS14.Server_Linux_ARM64.zip
+        path: ./release/SS14.Server_Linux_ARM64.zip
+    - name: Upload client artifact
+      uses: actions/upload-artifact@v2.2.1
+      with:
+        name: SS14.Client.zip
+        path: ./release/SS14.Client.zip

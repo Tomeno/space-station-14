@@ -31,7 +31,7 @@ jobs:
     - name: Package server for ARM64
       run: python3 ./Tools/package_server_build.py -p linux-arm64
     - name: Package client for ARM64
-      run: python3 ./Tools/package_client_build.py -p linux-arm64
+      run: python3 ./Tools/package_client_build.py
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.1
       with:

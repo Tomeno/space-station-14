@@ -1,0 +1,28 @@
+name: .NET
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.101
+    - name: Setup Python
+      uses: actions/setup-python@v2.2.1
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Package server for ARM64
+      run: python3 ./Tools/package_server_build.py -p linux-arm64
+    - name: Package client for ARM64
+      run: python3 ./Tools/package_client_build.py -p linux-arm64
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.1
+      with:
+        name: ss14-builds
+        path: ./release/*
